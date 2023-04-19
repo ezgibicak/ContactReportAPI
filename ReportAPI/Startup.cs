@@ -1,25 +1,18 @@
-using ContactAPI.Business;
-using ContactAPI.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-using AutoMapper;
-using ContactAPI.Mapping;
-using ContactAPI.DataAccess;
-using RabbitMQ.Client;
-
-namespace ContactAPI
+namespace ReportAPI
 {
     public class Startup
     {
@@ -33,21 +26,12 @@ namespace ContactAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllers();
-            services.AddDbContext<AplicationContext>(options =>
-            options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<IKisiBusiness, KisiBusiness>();
-            services.AddScoped<IIletisimBusiness, IletisimBusiness>();
-            services.AddScoped(typeof(IContactDataAccess<>), typeof(ContactDataAccess<>));
-            services.AddSwaggerGen();
-
-            var mapperConfig = new MapperConfiguration(mc =>
+            services.AddSwaggerGen(c =>
             {
-                mc.AddProfile(new MapHelper());
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ReportAPI", Version = "v1" });
             });
-
-            IMapper mapper = mapperConfig.CreateMapper();
-            services.AddSingleton(mapper);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +40,8 @@ namespace ContactAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ReportAPI v1"));
             }
 
             app.UseHttpsRedirection();
@@ -68,19 +54,6 @@ namespace ContactAPI
             {
                 endpoints.MapControllers();
             });
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Contact Report API");
-            });
-            var factory = new ConnectionFactory
-            {
-                HostName = Configuration["RabbitMQ:HostName"],
-                UserName = Configuration["RabbitMQ:UserName"],
-                Password = Configuration["RabbitMQ:Password"],
-                VirtualHost = Configuration["RabbitMQ:VirtualHost"]
-            };
-
         }
     }
 }

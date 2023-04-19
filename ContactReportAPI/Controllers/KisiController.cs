@@ -4,7 +4,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace ContactAPI.Controllers
@@ -37,6 +40,11 @@ namespace ContactAPI.Controllers
         {
             sonucModel = await kisiBusiness.Delete(kisi);
             return sonucModel;
+        }
+        [HttpGet("GetReport")]
+        public async Task GetReport()
+        {
+
         }
     }
 }
