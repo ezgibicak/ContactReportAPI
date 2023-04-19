@@ -34,13 +34,11 @@ namespace ContactAPI
         {
             services.AddControllers();
             services.AddDbContext<AplicationContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IKisiBusiness, KisiBusiness>();
             services.AddScoped<IIletisimBusiness, IletisimBusiness>();
-            //services.AddScoped<IContactDataAccess<T>, ContactDataAccess<T>>();
             services.AddScoped(typeof(IContactDataAccess<>), typeof(ContactDataAccess<>));
-            //var contactDataAccess = serviceProvider.GetService<IContactDataAccess<int>>();
-
+            services.AddSwaggerGen();
 
             var mapperConfig = new MapperConfiguration(mc =>
             {
@@ -68,6 +66,11 @@ namespace ContactAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Contact Report API");
             });
         }
     }

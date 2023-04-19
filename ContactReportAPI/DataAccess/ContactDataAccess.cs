@@ -56,7 +56,7 @@ namespace ContactAPI.DataAccess
                 context.SaveChangesAsync();
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }

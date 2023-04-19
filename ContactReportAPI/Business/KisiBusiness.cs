@@ -15,15 +15,13 @@ namespace ContactAPI.Business
         private readonly IMapper mapper;
         private readonly IContactDataAccess<Kisi> dataAccess;
         private readonly IContactDataAccess<Iletisim> dataAccessIletisim;
-        private readonly IContactDataAccess<KisiIletisim> dataAccesskisiIletisim;
         private SonucModel<KisiModel> sonucModel;
 
-        public KisiBusiness(IMapper mapper, IContactDataAccess<Kisi> dataAccess, IContactDataAccess<Iletisim> dataAccessIletisim, IContactDataAccess<KisiIletisim> dataAccesskisiIletisim)
+        public KisiBusiness(IMapper mapper, IContactDataAccess<Kisi> dataAccess, IContactDataAccess<Iletisim> dataAccessIletisim)
         {
             this.mapper = mapper;
             this.dataAccess = dataAccess;
             this.dataAccessIletisim = dataAccessIletisim;
-            this.dataAccesskisiIletisim = dataAccesskisiIletisim;
             sonucModel = new SonucModel<KisiModel>();
         }
         public async Task<SonucModel<KisiModel>> Get()
@@ -31,13 +29,10 @@ namespace ContactAPI.Business
             try
             {
                 var kisiListesi = dataAccess.GetAll();
-                foreach (var kisi in kisiListesi)
+                foreach (var kisi in kisiListesi.ToList())
                 {
-                    var kisiIletisim = dataAccesskisiIletisim.Find(x => x.KisiId == kisi.Id).ToList();
-                    foreach (var iletisim in kisiIletisim)
-                    {
-                        kisi.Iletisim = dataAccessIletisim.Find(x => x.Id == iletisim.İletisimId).ToList();
-                    }
+                    var kisiIletisim = dataAccessIletisim.Find(x => x.KisiId == kisi.Id).ToList();
+                    kisi.Iletisim = kisiIletisim;
                 }
                 var kisiModelListe = mapper.Map<List<KisiModel>>(kisiListesi.ToList());
                 sonucModel.Data = kisiModelListe;

@@ -8,6 +8,7 @@ namespace ContactAPI.Model
     public class İletisimModel
     {
         public int Id { get; set; }
+        public Guid KisiId { get; set; }
         public string TelefonNumarasi { get; set; }
         public string Email { get; set; }
         public double Latitude { get; set; }

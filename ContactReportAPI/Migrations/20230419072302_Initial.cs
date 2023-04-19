@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ContactReportAPI.Migrations
 {
@@ -11,10 +12,10 @@ namespace ContactReportAPI.Migrations
                 name: "Kisi",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Ad = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Soyad = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Firma = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Ad = table.Column<string>(type: "text", nullable: true),
+                    Soyad = table.Column<string>(type: "text", nullable: true),
+                    Firma = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -25,8 +26,8 @@ namespace ContactReportAPI.Migrations
                 name: "KisiIletisim",
                 columns: table => new
                 {
-                    KisiId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    İletisimId = table.Column<int>(type: "int", nullable: false)
+                    KisiId = table.Column<Guid>(type: "uuid", nullable: false),
+                    IletisimId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -36,13 +37,13 @@ namespace ContactReportAPI.Migrations
                 name: "Iletisim",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TelefonNumarasi = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Latitude = table.Column<double>(type: "float", nullable: false),
-                    Longitude = table.Column<double>(type: "float", nullable: false),
-                    KisiId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    TelefonNumarasi = table.Column<string>(type: "text", nullable: true),
+                    Email = table.Column<string>(type: "text", nullable: true),
+                    Latitude = table.Column<double>(type: "double precision", nullable: false),
+                    Longitude = table.Column<double>(type: "double precision", nullable: false),
+                    KisiId = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
                 {
