@@ -34,7 +34,7 @@ namespace ContactAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<AplicationContext>(options =>
+            services.AddDbContext<ContactContext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IKisiBusiness, KisiBusiness>();
             services.AddScoped<IIletisimBusiness, IletisimBusiness>();

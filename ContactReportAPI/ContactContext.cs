@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ContactAPI
 {
-    public class AplicationContext : DbContext
+    public class ContactContext : DbContext
     {
-        public AplicationContext(DbContextOptions<AplicationContext> options) : base(options)
+        public ContactContext(DbContextOptions<ContactContext> options) : base(options)
         {
         }
 

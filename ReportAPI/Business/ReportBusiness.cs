@@ -21,17 +21,18 @@ namespace ReportAPI.Business
             this.mapper = mapper;
             this.dataAccess = dataAccess;
         }
-        public async Task<SonucModel<ReportModel>> Post(List<ReportModel> reportModel)
+        public async Task<SonucModel<ReportModel>> Post()
         {
-
             try
             {
-                var reportList = mapper.Map<List<Report>>(reportModel);
-                foreach (var report in reportList)
-                {
-                    bool isSuccessful = dataAccess.Add(report);
-                    IsSuccessful(isSuccessful);
-                }
+                ReportModel reportModel = new ReportModel();
+                reportModel.CreatedDate = DateTime.Now;
+                reportModel.State = 0;//Hazır
+                reportModel.Id = Guid.NewGuid();
+                reportModel.Path = "";
+                var report = mapper.Map<Report>(reportModel);
+                bool isSuccessful = dataAccess.Add(report);
+                IsSuccessful(isSuccessful);
 
             }
             catch (Exception ex)

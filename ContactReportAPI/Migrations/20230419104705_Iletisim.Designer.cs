@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ContactReportAPI.Migrations
 {
-    [DbContext(typeof(AplicationContext))]
+    [DbContext(typeof(ContactContext))]
     [Migration("20230419104705_Iletisim")]
     partial class Iletisim
     {

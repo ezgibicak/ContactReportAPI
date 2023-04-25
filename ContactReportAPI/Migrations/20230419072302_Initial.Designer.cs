@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ContactReportAPI.Migrations
 {
-    [DbContext(typeof(AplicationContext))]
+    [DbContext(typeof(ContactContext))]
     [Migration("20230419072302_Initial")]
     partial class Initial
     {

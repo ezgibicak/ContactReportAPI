@@ -9,7 +9,7 @@ using ReportAPI;
 
 namespace ReportAPI.Migrations
 {
-    [DbContext(typeof(AplicationContext))]
+    [DbContext(typeof(ReportContext))]
     [Migration("20230424125526_Report")]
     partial class Report
     {

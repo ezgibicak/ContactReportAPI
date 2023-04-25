@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System;
 using System.Text;
-using Newtonsoft.Json;
 using System.Collections.Specialized;
 
 namespace ContactReportAPI.Helper

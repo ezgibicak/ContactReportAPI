@@ -7,8 +7,8 @@ namespace ReportAPI.DataAccess
 {
     public class ReportDataAccess<T> : IReportDataAccess<T> where T : class
     {
-        private readonly AplicationContext context;
-        public ReportDataAccess(AplicationContext context)
+        private readonly ReportContext context;
+        public ReportDataAccess(ReportContext context)
         {
             this.context = context;
         }

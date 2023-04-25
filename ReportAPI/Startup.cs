@@ -34,7 +34,7 @@ namespace ReportAPI
         {
 
             services.AddControllers();
-            services.AddDbContext<AplicationContext>(options =>
+            services.AddDbContext<ReportContext>(options =>
            options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IReportBusiness, ReportBusiness>();
             services.AddScoped(typeof(IReportDataAccess<>), typeof(ReportDataAccess<>));

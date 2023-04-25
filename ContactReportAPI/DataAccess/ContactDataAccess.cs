@@ -7,8 +7,8 @@ namespace ContactAPI.DataAccess
 {
     public class ContactDataAccess<T> : IContactDataAccess<T> where T : class
     {
-        private readonly AplicationContext context;
-        public ContactDataAccess(AplicationContext context)
+        private readonly ContactContext context;
+        public ContactDataAccess(ContactContext context)
         {
             this.context = context;
         }

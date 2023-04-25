@@ -9,7 +9,7 @@ namespace ReportAPI.Interface
     public interface IReportBusiness
     {
         Task<SonucModel<ReportModel>> Get();
-        Task<SonucModel<ReportModel>> Post(List<ReportModel> reportModel);
+        Task<SonucModel<ReportModel>> Post();
         //Task<SonucModel<ReportModel>> Delete();
     }
 }

@@ -4,9 +4,9 @@ using ReportAPI.Entity;
 
 namespace ReportAPI
 {
-    public class AplicationContext : DbContext
+    public class ReportContext : DbContext
     {
-        public AplicationContext(DbContextOptions<AplicationContext> options) : base(options)
+        public ReportContext(DbContextOptions<ReportContext> options) : base(options)
         {
         }
 
