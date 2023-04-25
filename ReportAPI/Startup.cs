@@ -1,12 +1,18 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ReportAPI.Business;
+using ReportAPI.DataAccess;
+using ReportAPI.Interface;
+using ReportAPI.Mapping;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,10 +34,21 @@ namespace ReportAPI
         {
 
             services.AddControllers();
+            services.AddDbContext<AplicationContext>(options =>
+           options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IReportBusiness, ReportBusiness>();
+            services.AddScoped(typeof(IReportDataAccess<>), typeof(ReportDataAccess<>));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ReportAPI", Version = "v1" });
             });
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MapHelper());
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

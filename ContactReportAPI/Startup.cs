@@ -73,14 +73,6 @@ namespace ContactAPI
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Contact Report API");
             });
-            var factory = new ConnectionFactory
-            {
-                HostName = Configuration["RabbitMQ:HostName"],
-                UserName = Configuration["RabbitMQ:UserName"],
-                Password = Configuration["RabbitMQ:Password"],
-                VirtualHost = Configuration["RabbitMQ:VirtualHost"]
-            };
-
         }
     }
 }

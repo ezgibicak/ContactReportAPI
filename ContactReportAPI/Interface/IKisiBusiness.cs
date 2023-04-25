@@ -1,4 +1,5 @@
 ﻿using ContactAPI.Model;
+using ContactReportAPI.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace ContactAPI.Interface
         Task<SonucModel<KisiModel>> Get();
         Task<SonucModel<KisiModel>> Post(KisiModel kisi);
         Task<SonucModel<KisiModel>> Delete(KisiModel kisi);
+        Task<SonucModel<ReportModel>> GetReportData();
     }
 }

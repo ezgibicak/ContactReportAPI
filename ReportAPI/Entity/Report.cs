@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ReportAPI.Model
+namespace ReportAPI.Entity
 {
-    public class ReportModel
+    public class Report
     {
         public Guid Id { get; set; }
         public DateTime CreatedDate { get; set; }
@@ -11,5 +11,6 @@ namespace ReportAPI.Model
         public int KayitliTelefonNo { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+
     }
 }

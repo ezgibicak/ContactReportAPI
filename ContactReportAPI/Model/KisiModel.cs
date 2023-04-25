@@ -12,5 +12,8 @@ namespace ContactAPI.Model
         public string Soyad { get; set; }
         public string Firma { get; set; }
         public List<İletisimModel> Iletisim { get; set; }
+        public int KayitliKisi { get; set; }
+        public int KayitliTelefonNo { get; set; }
+
     }
 }
