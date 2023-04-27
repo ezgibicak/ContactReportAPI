@@ -53,14 +53,14 @@ namespace RabitMQConsumer
             int k = 2;
             if (reportModel != null)
             {
-                for (int i = 0; i < reportModel.Data.Count; i++)
+                for (int i = 0; i < reportModel.DataList.Count; i++)
                 {
-                    worksheet.Cells[k, 1].Value = reportModel.Data[i].Longitude + "," + reportModel.Data[i].Latitude;
-                    worksheet.Cells[k, 2].Value = reportModel.Data[i].KayitliKisi;
-                    worksheet.Cells[k, 3].Value = reportModel.Data[i].KayitliTelefonNo;
+                    worksheet.Cells[k, 1].Value = reportModel.DataList[i].Longitude + "," + reportModel.DataList[i].Latitude;
+                    worksheet.Cells[k, 2].Value = reportModel.DataList[i].KayitliKisi;
+                    worksheet.Cells[k, 3].Value = reportModel.DataList[i].KayitliTelefonNo;
                     k++;
-                    reportIds.Add(reportModel.Data[i].Id);
-                    string fileName = reportModel.Data[i].Path;
+                    reportIds.Add(reportModel.DataList[i].Id);
+                    string fileName = reportModel.DataList[i].Path;
                     System.IO.FileInfo file = new System.IO.FileInfo(fileName);
                     excelPackage.SaveAs(file);
                 }

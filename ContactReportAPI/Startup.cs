@@ -1,5 +1,3 @@
-using ContactAPI.Business;
-using ContactAPI.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -18,6 +16,8 @@ using AutoMapper;
 using ContactAPI.Mapping;
 using ContactAPI.DataAccess;
 using RabbitMQ.Client;
+using ContactAPI.Business.Abstract;
+using ContactAPI.Business.Concrete;
 
 namespace ContactAPI
 {
@@ -36,8 +36,8 @@ namespace ContactAPI
             services.AddControllers();
             services.AddDbContext<ContactContext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<IKisiBusiness, KisiBusiness>();
-            services.AddScoped<IIletisimBusiness, IletisimBusiness>();
+            services.AddScoped<IPersonBusiness, PersonBusiness>();
+            services.AddScoped<IContactBusiness, ContactBusiness>();
             services.AddScoped(typeof(IContactDataAccess<>), typeof(ContactDataAccess<>));
             services.AddSwaggerGen();
 

@@ -1,16 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using RabbitMQ.Client.Events;
-using RabbitMQ.Client;
-using ReportAPI.Interface;
-using ReportAPI.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Common.Model;
+using ReportAPI.Business.Abstract;
 
 namespace ReportAPI.Controllers
 {
@@ -19,36 +15,36 @@ namespace ReportAPI.Controllers
     public class ReportController : ControllerBase
     {
         private readonly IReportBusiness reportBusiness;
-        private SonucModel<ReportModel> sonucModel;
+        private ResultModel<ReportModel> resultModel;
         public ReportController(IReportBusiness _reportBusiness)
         {
             reportBusiness = _reportBusiness;
-            sonucModel = new SonucModel<ReportModel>();
+            resultModel = new ResultModel<ReportModel>();
         }
         [HttpPost]
-        public async Task<ActionResult<SonucModel<ReportModel>>> Post()
+        public async Task<ActionResult<ResultModel<ReportModel>>> Post()
         {
 
             await reportBusiness.Post();
-            sonucModel.Mesaj = "Başarılı";
+            resultModel.Mesaj = "Başarılı";
 
-            return sonucModel;
+            return resultModel;
         }
 
         [HttpGet]
-        public async Task<ActionResult<SonucModel<ReportModel>>> Get()
+        public async Task<ActionResult<ResultModel<ReportModel>>> Get()
         {
-            sonucModel = await reportBusiness.Get();
-            return sonucModel;
+            resultModel = await reportBusiness.Get();
+            return resultModel;
         }
         [HttpPost("Update")]
-        public async Task<ActionResult<SonucModel<ReportModel>>> Update()
+        public async Task<ActionResult<ResultModel<ReportModel>>> Update()
         {
             using var streamReader = new StreamReader(Request.Body, Encoding.UTF8);
             var requestBody = await streamReader.ReadToEndAsync();
             List<Guid> idList = JsonConvert.DeserializeObject<List<Guid>>(requestBody);
-            sonucModel = await reportBusiness.Update(idList);
-            return sonucModel;
+            resultModel = await reportBusiness.Update(idList);
+            return resultModel;
         }
     }
 }

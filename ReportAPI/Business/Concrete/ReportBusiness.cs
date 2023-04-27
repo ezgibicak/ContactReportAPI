@@ -1,24 +1,23 @@
 ﻿using System.Threading.Tasks;
 using System;
 using AutoMapper;
-using ReportAPI.Model;
 using ReportAPI.DataAccess;
 using ReportAPI.Entity;
-using ReportAPI.Interface;
 using System.Linq;
 using System.Collections.Generic;
 using Helper.RabitMQHelper;
 using Common.Model;
 using ContactReportAPI.Helper;
 using Newtonsoft.Json;
+using ReportAPI.Business.Abstract;
 
-namespace ReportAPI.Business
+namespace ReportAPI.Business.Concrete
 {
     public class ReportBusiness : IReportBusiness
     {
         private readonly IMapper mapper;
         private readonly IReportDataAccess<Report> dataAccess;
-        private readonly SonucModel<ReportModel> sonucModel = new SonucModel<ReportModel>();
+        private readonly ResultModel<ReportModel> resultModel = new ResultModel<ReportModel>();
         private readonly IRabitMQProducer rabitMQProducer;
 
 
@@ -28,7 +27,7 @@ namespace ReportAPI.Business
             this.dataAccess = dataAccess;
             this.rabitMQProducer = rabitMQProducer;
         }
-        public async Task<SonucModel<ReportModel>> Post()
+        public async Task<ResultModel<ReportModel>> Post()
         {
             try
             {
@@ -39,10 +38,10 @@ namespace ReportAPI.Business
                 reportModel.Path = @"C:\Users\ezgi.bicak\" + reportModel.Id + ".xlsx";
                 var report = mapper.Map<Report>(reportModel);
                 bool isSuccessful = dataAccess.Add(report);
-                var data = await RestHelper.GetRequestAsync("http://localhost:5000/api/Contact/GetReport");
+                var data = await RestHelper.GetRequestAsync("http://localhost:5000/api/Person/GetReport");
                 string responseBody = await data.Content.ReadAsStringAsync();
-                var sonuc = JsonConvert.DeserializeObject<SonucModel<ReportModel>>(responseBody);
-                foreach (var item in sonuc.Data)
+                var sonuc = JsonConvert.DeserializeObject<ResultModel<ReportModel>>(responseBody);
+                foreach (var item in sonuc.DataList)
                 {
                     item.Id = reportModel.Id;
                     item.CreatedDate = reportModel.CreatedDate;
@@ -56,28 +55,28 @@ namespace ReportAPI.Business
             }
             catch (Exception ex)
             {
-                sonucModel.Mesaj = string.Format("Başarısız:{0}", ex.Message);
+                resultModel.Mesaj = string.Format("Başarısız:{0}", ex.Message);
             }
-            return sonucModel;
+            return resultModel;
 
         }
-        public async Task<SonucModel<ReportModel>> Get()
+        public async Task<ResultModel<ReportModel>> Get()
         {
             try
             {
                 var reportResult = dataAccess.GetAll();
                 var reportList = mapper.Map<List<ReportModel>>(reportResult.ToList());
-                sonucModel.Mesaj = reportList.Count > 0 ? "Başarılı" : "Kişi listesi boş";
-                sonucModel.Data = reportList;
+                resultModel.Mesaj = reportList.Count > 0 ? "Başarılı" : "Kişi listesi boş";
+                resultModel.DataList = reportList;
             }
             catch (Exception ex)
             {
-                sonucModel.Mesaj = string.Format("Başarısız:{0}", ex.Message);
+                resultModel.Mesaj = string.Format("Başarısız:{0}", ex.Message);
             }
-            return sonucModel;
+            return resultModel;
 
         }
-        public async Task<SonucModel<ReportModel>> Update(List<Guid> liste)
+        public async Task<ResultModel<ReportModel>> Update(List<Guid> liste)
         {
             try
             {
@@ -88,24 +87,24 @@ namespace ReportAPI.Business
                     var reportResult = dataAccess.Update(result);
                     IsSuccessful(reportResult);
                 }
-                sonucModel.Data = null;
+                resultModel.Data = null;
             }
             catch (Exception ex)
             {
-                sonucModel.Mesaj = string.Format("Başarısız:{0}", ex.Message);
+                resultModel.Mesaj = string.Format("Başarısız:{0}", ex.Message);
             }
-            return sonucModel;
+            return resultModel;
 
         }
         private void IsSuccessful(bool isSuccessful)
         {
             if (isSuccessful)
             {
-                sonucModel.Mesaj = "Başarılı";
+                resultModel.Mesaj = "Başarılı";
             }
             else
             {
-                sonucModel.Mesaj = "Başarısız";
+                resultModel.Mesaj = "Başarısız";
             }
         }
     }

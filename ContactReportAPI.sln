@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactReportAPI", "ContactReportAPI\ContactReportAPI.csproj", "{623D8821-1456-479D-9828-2D3644246C29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactAPI", "ContactReportAPI\ContactAPI.csproj", "{623D8821-1456-479D-9828-2D3644246C29}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportAPI", "ReportAPI\ReportAPI.csproj", "{AD2BB21B-5955-40FD-B021-AE88BBF3BCA6}"
 EndProject

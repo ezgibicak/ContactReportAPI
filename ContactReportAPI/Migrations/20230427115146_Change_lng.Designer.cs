@@ -3,15 +3,17 @@ using System;
 using ContactAPI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ContactReportAPI.Migrations
 {
     [DbContext(typeof(ContactContext))]
-    partial class AplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20230427115146_Change_lng")]
+    partial class Change_lng
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,7 +47,7 @@ namespace ContactReportAPI.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("Contact");
+                    b.ToTable("Iletisim");
                 });
 
             modelBuilder.Entity("ContactAPI.Entity.Person", b =>
@@ -65,7 +67,7 @@ namespace ContactReportAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Person");
+                    b.ToTable("Kisi");
                 });
 
             modelBuilder.Entity("ContactAPI.Entity.Contact", b =>

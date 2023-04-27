@@ -9,8 +9,8 @@ namespace ContactAPI
         {
         }
 
-        public DbSet<Kisi> Kisi { get; set; }
-        public DbSet<Iletisim> Iletisim { get; set; }
+        public DbSet<Person> Person { get; set; }
+        public DbSet<Contact> Contact { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

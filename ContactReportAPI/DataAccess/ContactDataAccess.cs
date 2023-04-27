@@ -53,7 +53,7 @@ namespace ContactAPI.DataAccess
         {
             try
             {
-                context.SaveChangesAsync();
+                context.SaveChanges();
                 return true;
             }
             catch (Exception ex)

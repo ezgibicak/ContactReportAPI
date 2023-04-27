@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace ContactAPI.Entity
 {
-    public class Iletisim
+    public class Contact
     {
         public int Id { get; set; }
-        public Guid KisiId { get; set; }
-        public string TelefonNumarasi { get; set; }
+        public Guid PersonId { get; set; }
+        public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }

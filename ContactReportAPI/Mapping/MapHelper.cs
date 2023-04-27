@@ -12,8 +12,8 @@ namespace ContactAPI.Mapping
     {
         public MapHelper()
         {
-            CreateMap<KisiModel, Kisi>().ReverseMap();
-            CreateMap<İletisimModel, Iletisim>().ReverseMap();
+            CreateMap<PersonModel, Person>().ReverseMap().ForMember(dest => dest.Contacts, opt => opt.MapFrom(src => src.Contact));
+            CreateMap<ContactModel, Contact>().ReverseMap();
         }
     }
 }
