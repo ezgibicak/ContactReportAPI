@@ -1,4 +1,5 @@
-﻿using ContactAPI.Interface;
+﻿using Common.Model;
+using ContactAPI.Interface;
 using ContactAPI.Model;
 using ContactReportAPI.Helper;
 using Microsoft.AspNetCore.Http;
@@ -47,19 +48,11 @@ namespace ContactAPI.Controllers
             sonucModel = await kisiBusiness.Delete(kisi);
             return sonucModel;
         }
-        //[HttpPost("CreateReport")]
-        //public async Task CreateReport()
-        //{
-        //    var kisiList = await kisiBusiness.GetReportData();
-        //    var json = JsonConvert.SerializeObject(kisiList.Data);
-        //    await RestHelper.PostRequestAsync("http://localhost:5001/api/Report", json);
-
-
-        //}
-        //[HttpGet("GetReport")]
-        //public async Task GetReport()
-        //{
-        //    await RestHelper.GetRequestAsync("http://localhost:5001/api/Report");
-        //}
+        [HttpGet("GetReport")]
+        public async Task<ActionResult<SonucModel<ReportModel>>> GetReport()
+        {
+            var kisiList = await kisiBusiness.GetReportData();
+            return kisiList;
+        }
     }
 }

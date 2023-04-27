@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReportAPI", "ReportAPI\Repo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helper", "Helper\Helper.csproj", "{7F6314B9-454E-4BD7-BEC6-9125B881CAD9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabitMQConsumer", "RabitMQConsumer\RabitMQConsumer.csproj", "{953DB112-B929-4BBF-A0DB-F9B4439174C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{273D689D-A490-4628-A098-19EFA1CB4AF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{7F6314B9-454E-4BD7-BEC6-9125B881CAD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F6314B9-454E-4BD7-BEC6-9125B881CAD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F6314B9-454E-4BD7-BEC6-9125B881CAD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{953DB112-B929-4BBF-A0DB-F9B4439174C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{953DB112-B929-4BBF-A0DB-F9B4439174C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{953DB112-B929-4BBF-A0DB-F9B4439174C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{953DB112-B929-4BBF-A0DB-F9B4439174C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{273D689D-A490-4628-A098-19EFA1CB4AF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{273D689D-A490-4628-A098-19EFA1CB4AF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{273D689D-A490-4628-A098-19EFA1CB4AF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{273D689D-A490-4628-A098-19EFA1CB4AF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

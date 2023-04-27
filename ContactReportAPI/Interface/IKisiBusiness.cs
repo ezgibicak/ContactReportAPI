@@ -1,5 +1,5 @@
-﻿using ContactAPI.Model;
-using ContactReportAPI.Model;
+﻿using Common.Model;
+using ContactAPI.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

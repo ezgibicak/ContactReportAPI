@@ -39,6 +39,10 @@ namespace ReportAPI.DataAccess
         {
             return context.Set<T>().Find(id);
         }
+        public T GetByGuidId(Guid id)
+        {
+            return context.Set<T>().Find(id);
+        }
         public bool Remove(T entity)
         {
             context.Set<T>().Remove(entity);

@@ -1,4 +1,6 @@
-﻿using ReportAPI.Model;
+﻿using Common.Model;
+using Microsoft.AspNetCore.Mvc;
+using ReportAPI.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,6 @@ namespace ReportAPI.Interface
     {
         Task<SonucModel<ReportModel>> Get();
         Task<SonucModel<ReportModel>> Post();
-        //Task<SonucModel<ReportModel>> Delete();
+        Task<SonucModel<ReportModel>> Update(List<Guid> liste);
     }
 }

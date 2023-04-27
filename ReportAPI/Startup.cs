@@ -1,4 +1,5 @@
 using AutoMapper;
+using Helper.RabitMQHelper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -37,6 +38,7 @@ namespace ReportAPI
             services.AddDbContext<ReportContext>(options =>
            options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IReportBusiness, ReportBusiness>();
+            services.AddScoped<IRabitMQProducer, RabitMQProducer>();
             services.AddScoped(typeof(IReportDataAccess<>), typeof(ReportDataAccess<>));
             services.AddSwaggerGen(c =>
             {

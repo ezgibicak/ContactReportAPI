@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
+using Common.Model;
 using ContactAPI.DataAccess;
 using ContactAPI.Entity;
 using ContactAPI.Interface;
 using ContactAPI.Model;
-using ContactReportAPI.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,7 +91,6 @@ namespace ContactAPI.Business
                 {
                     ReportModel reportModel = new ReportModel();
                     var kayitliTelefonNo = liste.Where(x => x.Latitude == item.Latitude && x.Longitude == item.Longitude).Count();
-                    //var kayitliKisi = liste.GroupBy(d => new { d.KisiId, item.Latitude, item.Longitude }, (key, group) => new { Key = key, Count = group.Count() }).Count();
                     var kayitliKisi = liste.Where(x => x.Latitude == item.Latitude && x.Longitude == item.Longitude).GroupBy(d => new { d.KisiId }, (key, group) => new { Key = key, Count = group.Count() }).Count();
                     reportModel.KayitliTelefonNo = kayitliTelefonNo;
                     reportModel.KayitliKisi = kayitliKisi;
