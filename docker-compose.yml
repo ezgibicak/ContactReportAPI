@@ -1,0 +1,28 @@
+version: '3.4'
+
+services:
+  contactreportdb:
+    image: postgres
+
+  pgadmin:
+    image: dpage/pgadmin4
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+
+  contactapi:
+    image: ${DOCKER_REGISTRY-}contactapi
+    build:
+      context: .
+      dockerfile: ContactReportAPI/Dockerfile
+
+  reportapi:
+    image: ${DOCKER_REGISTRY-}reportapi
+    build:
+      context: .
+      dockerfile: ReportAPI/Dockerfile
+   
+volumes:
+  postgres_data:
+  pgadmin_data:
+

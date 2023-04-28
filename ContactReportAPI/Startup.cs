@@ -39,6 +39,7 @@ namespace ContactAPI
             services.AddScoped<IPersonBusiness, PersonBusiness>();
             services.AddScoped<IContactBusiness, ContactBusiness>();
             services.AddScoped(typeof(IContactDataAccess<>), typeof(ContactDataAccess<>));
+
             services.AddSwaggerGen();
 
             var mapperConfig = new MapperConfiguration(mc =>
