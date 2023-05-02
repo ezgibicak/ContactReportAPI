@@ -7,6 +7,6 @@ namespace Common.Model
     {
         public List<T> DataList { get; set; }
         public T Data { get; set; }
-        public string Mesaj { get; set; }
+        public string Message { get; set; }
     }
 }

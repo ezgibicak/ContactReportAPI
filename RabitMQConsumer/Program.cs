@@ -56,8 +56,8 @@ namespace RabitMQConsumer
                 for (int i = 0; i < reportModel.DataList.Count; i++)
                 {
                     worksheet.Cells[k, 1].Value = reportModel.DataList[i].Longitude + "," + reportModel.DataList[i].Latitude;
-                    worksheet.Cells[k, 2].Value = reportModel.DataList[i].KayitliKisi;
-                    worksheet.Cells[k, 3].Value = reportModel.DataList[i].KayitliTelefonNo;
+                    worksheet.Cells[k, 2].Value = reportModel.DataList[i].SavedPerson;
+                    worksheet.Cells[k, 3].Value = reportModel.DataList[i].SavedPhoneNumber;
                     k++;
                     reportIds.Add(reportModel.DataList[i].Id);
                     string fileName = reportModel.DataList[i].Path;

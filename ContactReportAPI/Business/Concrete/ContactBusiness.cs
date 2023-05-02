@@ -34,7 +34,7 @@ namespace ContactAPI.Business.Concrete
             }
             catch (Exception ex)
             {
-                resultModel.Mesaj = string.Format("Başarısız:{0}", ex.Message);
+                resultModel.Message = string.Format("Başarısız:{0}", ex.Message);
             }
             return resultModel;
 
@@ -49,7 +49,7 @@ namespace ContactAPI.Business.Concrete
             }
             catch (Exception ex)
             {
-                resultModel.Mesaj = string.Format("Başarısız:{0}", ex.Message);
+                resultModel.Message = string.Format("Başarısız:{0}", ex.Message);
             }
             return resultModel;
         }
@@ -57,11 +57,11 @@ namespace ContactAPI.Business.Concrete
         {
             if (isSuccessful)
             {
-                resultModel.Mesaj = "Başarılı";
+                resultModel.Message = "Başarılı";
             }
             else
             {
-                resultModel.Mesaj = "Başarısız";
+                resultModel.Message = "Başarısız";
             }
         }
     }

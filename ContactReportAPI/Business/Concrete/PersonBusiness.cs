@@ -39,13 +39,12 @@ namespace ContactAPI.Business.Concrete
                 var personModelList = mapper.Map<List<PersonModel>>(personList.ToList());
 
                 resultModel.DataList = personModelList;
-                resultModel.Mesaj = personModelList.Count > 0 ? "Başarılı" : "Kişi listesi boş";
-                return resultModel;
+                resultModel.Message = personModelList.Count > 0 ? "Başarılı" : "Kişi listesi boş";
 
             }
             catch (Exception ex)
             {
-                resultModel.Mesaj = string.Format("Başarısız:{0}", ex.Message);
+                resultModel.Message = string.Format("Başarısız:{0}", ex.Message);
             }
             return resultModel;
 
@@ -63,7 +62,7 @@ namespace ContactAPI.Business.Concrete
             }
             catch (Exception ex)
             {
-                resultModel.Mesaj = string.Format("Başarısız:{0}", ex.Message);
+                resultModel.Message = string.Format("Başarısız:{0}", ex.Message);
             }
             return resultModel;
 
@@ -78,7 +77,7 @@ namespace ContactAPI.Business.Concrete
             }
             catch (Exception ex)
             {
-                resultModel.Mesaj = string.Format("Başarısız:{0}", ex.Message);
+                resultModel.Message = string.Format("Başarısız:{0}", ex.Message);
             }
             return resultModel;
         }
@@ -95,8 +94,8 @@ namespace ContactAPI.Business.Concrete
                     ReportModel reportModel = new ReportModel();
                     var savedPhoneNumber = list.Where(x => x.Latitude == item.Latitude && x.Longitude == item.Longitude).Count();
                     var personNumber = list.Where(x => x.Latitude == item.Latitude && x.Longitude == item.Longitude).GroupBy(d => new { d.PersonId }, (key, group) => new { Key = key, Count = group.Count() }).Count();
-                    reportModel.KayitliTelefonNo = savedPhoneNumber;
-                    reportModel.KayitliKisi = personNumber;
+                    reportModel.SavedPhoneNumber = savedPhoneNumber;
+                    reportModel.SavedPerson = personNumber;
                     reportModel.Latitude = item.Latitude;
                     reportModel.Longitude = item.Longitude;
                     if (!reportModelList.Where(x => x.Longitude == item.Longitude && x.Latitude == item.Latitude).Any())
@@ -105,12 +104,12 @@ namespace ContactAPI.Business.Concrete
                     }
                 }
                 reportSonuc.DataList = reportModelList;
-                reportSonuc.Mesaj = reportModelList.Count > 0 ? "Başarılı" : "Başarısız";
+                reportSonuc.Message = reportModelList.Count > 0 ? "Başarılı" : "Başarısız";
 
             }
             catch (Exception ex)
             {
-                reportSonuc.Mesaj = string.Format("Başarısız:{0}", ex.Message);
+                reportSonuc.Message = string.Format("Başarısız:{0}", ex.Message);
             }
             return reportSonuc;
 
@@ -119,11 +118,11 @@ namespace ContactAPI.Business.Concrete
         {
             if (isSuccessful)
             {
-                resultModel.Mesaj = "Başarılı";
+                resultModel.Message = "Başarılı";
             }
             else
             {
-                resultModel.Mesaj = "Başarısız";
+                resultModel.Message = "Başarısız";
             }
         }
     }

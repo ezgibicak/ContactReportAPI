@@ -26,7 +26,7 @@ namespace ReportAPI.Controllers
         {
 
             await reportBusiness.Post();
-            resultModel.Mesaj = "Başarılı";
+            resultModel.Message = "Başarılı";
 
             return resultModel;
         }

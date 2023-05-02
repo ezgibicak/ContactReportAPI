@@ -55,7 +55,7 @@ namespace ReportAPI.Business.Concrete
             }
             catch (Exception ex)
             {
-                resultModel.Mesaj = string.Format("Başarısız:{0}", ex.Message);
+                resultModel.Message = string.Format("Başarısız:{0}", ex.Message);
             }
             return resultModel;
 
@@ -66,12 +66,12 @@ namespace ReportAPI.Business.Concrete
             {
                 var reportResult = dataAccess.GetAll();
                 var reportList = mapper.Map<List<ReportModel>>(reportResult.ToList());
-                resultModel.Mesaj = reportList.Count > 0 ? "Başarılı" : "Kişi listesi boş";
+                resultModel.Message = reportList.Count > 0 ? "Başarılı" : "Kişi listesi boş";
                 resultModel.DataList = reportList;
             }
             catch (Exception ex)
             {
-                resultModel.Mesaj = string.Format("Başarısız:{0}", ex.Message);
+                resultModel.Message = string.Format("Başarısız:{0}", ex.Message);
             }
             return resultModel;
 
@@ -91,7 +91,7 @@ namespace ReportAPI.Business.Concrete
             }
             catch (Exception ex)
             {
-                resultModel.Mesaj = string.Format("Başarısız:{0}", ex.Message);
+                resultModel.Message = string.Format("Başarısız:{0}", ex.Message);
             }
             return resultModel;
 
@@ -100,11 +100,11 @@ namespace ReportAPI.Business.Concrete
         {
             if (isSuccessful)
             {
-                resultModel.Mesaj = "Başarılı";
+                resultModel.Message = "Başarılı";
             }
             else
             {
-                resultModel.Mesaj = "Başarısız";
+                resultModel.Message = "Başarısız";
             }
         }
     }
